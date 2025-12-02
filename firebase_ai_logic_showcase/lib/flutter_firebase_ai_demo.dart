@@ -59,30 +59,11 @@ class _DemoHomeScreenState extends State<DemoHomeScreen> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < 600) {
-          // Use BottomNavigationBar for smaller screens
-          return Scaffold(
-            body: demoPages[_selectedIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              items: destinations
-                  .map(
-                    (e) => BottomNavigationBarItem(
-                      icon: e.icon,
-                      label: e.label,
-                      activeIcon: e.selectedIcon,
-                    ),
-                  )
-                  .toList(),
-              currentIndex: _selectedIndex,
-              onTap: _onItemTapped,
-            ),
-          );
-        } else {
-          // Use NavigationRail for larger screens
-          return Scaffold(
-            body: Row(
-              children: <Widget>[
+        return Scaffold(
+          body: Row(
+            children: <Widget>[
+              if (constraints.maxWidth >
+                  600) // Show NavigationRail on Medium or larger screens
                 NavigationRail(
                   selectedIndex: _selectedIndex,
                   onDestinationSelected: _onItemTapped,
@@ -101,12 +82,28 @@ class _DemoHomeScreenState extends State<DemoHomeScreen> {
                       )
                       .toList(),
                 ),
-                const VerticalDivider(thickness: 1, width: 1),
-                Expanded(child: demoPages[_selectedIndex]),
-              ],
-            ),
-          );
-        }
+              Expanded(child: demoPages[_selectedIndex]),
+            ],
+          ),
+          bottomNavigationBar:
+              (constraints.maxWidth <
+                  600) // Show navigation bar on smaller screens
+              ? BottomNavigationBar(
+                  type: BottomNavigationBarType.fixed,
+                  items: destinations
+                      .map(
+                        (e) => BottomNavigationBarItem(
+                          icon: e.icon,
+                          label: e.label,
+                          activeIcon: e.selectedIcon,
+                        ),
+                      )
+                      .toList(),
+                  currentIndex: _selectedIndex,
+                  onTap: _onItemTapped,
+                )
+              : null,
+        );
       },
     );
   }
