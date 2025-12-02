@@ -64,7 +64,16 @@ class _DemoHomeScreenState extends State<DemoHomeScreen> {
             children: <Widget>[
               if (constraints.maxWidth >
                   600) // Show NavigationRail on Medium or larger screens
+              ...[
                 NavigationRail(
+                  leading: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Image.asset(
+                      'assets/firebase-ai-logic.png',
+                      width: 45,
+                      height: 45,
+                    ),
+                  ),
                   selectedIndex: _selectedIndex,
                   onDestinationSelected: _onItemTapped,
                   labelType: NavigationRailLabelType.all,
@@ -82,6 +91,8 @@ class _DemoHomeScreenState extends State<DemoHomeScreen> {
                       )
                       .toList(),
                 ),
+                VerticalDivider(thickness: 1, width: 1),
+              ],
               Expanded(child: demoPages[_selectedIndex]),
             ],
           ),
