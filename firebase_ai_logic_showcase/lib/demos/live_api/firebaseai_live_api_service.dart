@@ -53,7 +53,7 @@ class LiveApiService {
     systemInstruction: Content.text(
       'You are a helpful assistant. If you have a tool to help the user, please use it.',
     ),
-    model: 'gemini-2.5-flash-native-audio-preview-09-2025',
+    model: 'gemini-2.5-flash-native-audio-preview-12-2025',
     liveGenerationConfig: LiveGenerationConfig(
       speechConfig: SpeechConfig(voiceName: 'fenrir'),
       responseModalities: [ResponseModalities.audio],
