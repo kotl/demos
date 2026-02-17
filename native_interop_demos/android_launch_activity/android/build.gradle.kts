@@ -22,3 +22,14 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
+buildscript {
+    dependencies {
+        // Replace with the latest version.
+        classpath("com.android.tools.build:gradle:8.1.1")
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
