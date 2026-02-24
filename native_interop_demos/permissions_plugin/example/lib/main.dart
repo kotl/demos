@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:permissions_plugin/gen/android.g.dart';
 import 'package:permissions_plugin/permissions_plugin.dart';
+import 'package:jni/jni.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +34,8 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await _permissionsPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _permissionsPlugin.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -51,11 +54,23 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
+        appBar: AppBar(title: const Text('Plugin example app')),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            children: [
+              Text('Running on: $_platformVersion\n'),
+              FilledButton(
+                child: Text("Request Camera Permissions"),
+                onPressed: () {
+_permissionsPlugin.checkAndRequestPermission(
+        Jni.androidApplicationContext,
+        "android.permission.CAMERA",
+        () {},
+      );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
