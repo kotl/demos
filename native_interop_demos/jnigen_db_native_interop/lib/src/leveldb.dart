@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:jni/jni.dart';
-import 'package:jni_leveldb/leveldb/java/io/File.dart' as java;
-import 'package:jni_leveldb/leveldb/org/iq80/leveldb/DB.dart';
-import 'package:jni_leveldb/leveldb/org/iq80/leveldb/Options.dart';
-import 'package:jni_leveldb/leveldb/org/iq80/leveldb/impl/Iq80DBFactory.dart';
-import 'package:jni_leveldb/leveldb/org/iq80/leveldb/impl/SeekingIteratorAdapter.dart';
+import 'package:jni_leveldb/gen/leveldb/java/io/File.dart' as java;
+import 'package:jni_leveldb/gen/leveldb/org/iq80/leveldb/DB.dart';
+import 'package:jni_leveldb/gen/leveldb/org/iq80/leveldb/Options.dart';
+import 'package:jni_leveldb/gen/leveldb/org/iq80/leveldb/impl/Iq80DBFactory.dart';
+import 'package:jni_leveldb/gen/leveldb/org/iq80/leveldb/impl/SeekingIteratorAdapter.dart';
 
 class LevelDB {
   final DB _db;
