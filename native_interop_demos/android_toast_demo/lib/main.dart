@@ -16,8 +16,6 @@ JObject context = Jni.androidApplicationContext;
 void showToast() {
   final message = 'The time is now ${DateTime.now()}';
 
-
-
 // Corresponds  to this second signature
 // public static Toast makeText (Context context,
 //              CharSequence text,
